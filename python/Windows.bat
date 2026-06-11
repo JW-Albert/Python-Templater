@@ -15,4 +15,8 @@ uv pip install --python "%VENV_DIR%\Scripts\python.exe" --upgrade pip
 
 echo [INFO] Install Python3 Required Package
 uv pip install --python "%VENV_DIR%\Scripts\python.exe" -r requirements.txt
+
+@REM echo [INFO] Install PyTorch in Virtual Python%PYTHON_VERSION% Environment.
+@REM "%VENV_DIR%\Scripts\pip.exe" install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+
 echo [INFO] Install Completed
