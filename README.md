@@ -1,6 +1,6 @@
 # Python-Templater
 
-這是一個 Python 模板 Repo，專為 **Windows 環境**設計，搭配 [uv](https://github.com/astral-sh/uv) 管理虛擬環境與套件，並預設整合 Claude Code 開發流程。
+這是一個 Python 模板 Repo，專為 **Windows 環境**設計，搭配 [uv](https://github.com/astral-sh/uv) 管理虛擬環境與套件，並預設整合 Claude Code 開發流程與 GitHub Actions CI。
 
 ## 環境需求
 
@@ -19,7 +19,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 ## 快速開始
 
 ```bat
-python.bat
+python\Windows.bat
 ```
 
 執行後會自動完成以下步驟：
@@ -33,14 +33,36 @@ python.bat
 
 ```
 Python-Templater/
+├── .github/
+│   └── workflows/
+│       └── pytest.yaml      # GitHub Actions CI（push / PR 自動跑測試）
 ├── src/
-│   └── main.py          # 程式進入點
-├── python.bat           # 一鍵建立虛擬環境並安裝套件
-├── requirements.txt     # 套件清單
-├── CLAUDE.md            # Claude Code 專案設定
+│   └── main.py              # 程式進入點
+├── tests/
+│   └── test_main.py         # PyTest 測試範本
+├── python/
+│   ├── Windows.bat          # 一鍵建立虛擬環境並安裝套件（Windows）
+│   └── Linux.sh             # 一鍵建立虛擬環境並安裝套件（Linux / CI）
+├── PyTest/
+│   ├── Windows.bat          # 執行 PyTest（Windows）
+│   └── Linux.sh             # 執行 PyTest（Linux / CI）
+├── requirements.txt         # 套件清單
+├── CLAUDE.md                # Claude Code 專案設定
 ├── .gitignore
 └── README.md
 ```
+
+## 執行測試
+
+```bat
+PyTest\Windows.bat
+```
+
+執行後會自動：
+
+1. 產生 `pytest.ini`（設定 `pythonpath = src`）
+2. 以 venv 內的 Python 執行 `pytest tests`
+3. 清理 `pytest.ini`
 
 ## 執行程式
 
@@ -59,11 +81,20 @@ uv run --python venv\Scripts\python.exe src\main.py
 
 ## 新增套件
 
-在 `requirements.txt` 加入套件名稱後，重新執行 `python.bat`，或手動安裝：
+在 `requirements.txt` 加入套件名稱後，重新執行 `python\Windows.bat`，或手動安裝：
 
 ```bat
 uv pip install --python venv\Scripts\python.exe <package-name>
 ```
+
+## GitHub Actions CI
+
+每次 push 到 `main` 或開啟 / 更新 Pull Request 時，CI 會自動：
+
+1. 建立 Python 3.10 虛擬環境並安裝套件
+2. 執行 `pytest tests`
+
+設定檔位於 [.github/workflows/pytest.yaml](.github/workflows/pytest.yaml)。
 
 ## 相關工具
 
