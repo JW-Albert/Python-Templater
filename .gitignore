@@ -216,3 +216,23 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Raw data
+data/*
+*.gz
+*.tar.gz
+*.zip
+
+# Run artifacts
+logs/
+output/
+
+# CUDA
+cuda_info.txt
+
+# CUDA
+cuda_info.txt
+
+# MacOS
+.DS_STORE
+.DS_Store
