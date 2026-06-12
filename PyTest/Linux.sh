@@ -8,22 +8,14 @@ safe_clear() {
     fi
 }
 
-# 確保離開時（含 pytest 失敗）都能清理環境
 cleanup() {
     deactivate 2>/dev/null || true
-    rm -f pytest.ini
 }
 trap cleanup EXIT
 
 safe_clear
 
 source venv/bin/activate
-
-cat > pytest.ini << 'EOF'
-[pytest]
-pythonpath = src
-addopts = -v --tb=short
-EOF
 
 safe_clear
 

@@ -12,7 +12,7 @@ echo "[INFO] Upgrade PIP Version."
 venv/bin/pip install --upgrade pip
 
 echo "[INFO] Install Python3 Required Package"
-venv/bin/pip install -r requirements.txt
+venv/bin/pip install -e ".[dev]"
 
 # echo "[INFO] Install PyTorch with CUDA"
 # venv/bin/pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
