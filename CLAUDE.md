@@ -43,6 +43,7 @@ Before commit:
 # 你用了哪些 MCP，Claude 需要知道什麼時候該用哪個
 Context7: use when looking up library/framework documentation
 markitdown: use when converting documents to markdown for reading
+codebase-memory-mcp: run Index this project to build codebase memory
 
 ## Reference Docs
 # 指向 docs/ 資料夾，讓 Claude 自行判斷是否需要讀
