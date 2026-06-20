@@ -26,8 +26,8 @@ jobs:
         env:
           TERM: dumb
         run: |
-          chmod +x python/Linux.sh
-          ./python/Linux.sh
+          chmod +x python/Linux_venv.sh
+          ./python/Linux_venv.sh
 
       - name: Run tests
         env:
